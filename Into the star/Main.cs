@@ -1,11 +1,11 @@
 ﻿using HOTTUI;
-using HOTTGF;
 using Into_the_star;
 using System.Numerics;
+
 Random rd = new Random();
-int planetnb = 1000;
+int planetnb = 100;
 Univers univers = new Univers();
-SpaceShip spaceShip = new SpaceShip("test", 0, new Vector3(rd.Next(planetnb *10), rd.Next(planetnb * 10), rd.Next(planetnb * 10)), planetnb / 20);
+SpaceShip spaceShip = new SpaceShip("test", 0, new Vector3(rd.Next(planetnb *10), rd.Next(planetnb * 10), rd.Next(planetnb * 10)), planetnb / 2);
 univers.Generate(planetnb);
 
 bool adminmode = false;
