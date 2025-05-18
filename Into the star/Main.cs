@@ -16,6 +16,7 @@ while (true)
 
     if (input == "info") { Commands.info(spaceShip.Position, univers); }
     else if (input == "exit") { break; }
+    else if (input == "position") { Console.Write($"Your position is :"); Tools.Whrite.WriteMachine(spaceShip.Position.ToString(), 100); Console.WriteLine(""); }
     else if (input.StartsWith("go to")) { spaceShip.Move(input); Tools.Whrite.Color_Write(ConsoleColor.Green, $"Your new position is : {spaceShip.Position}\n"); }
     else if (input == "scan") 
     { 
