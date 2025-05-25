@@ -13,7 +13,7 @@ namespace Into_the_star
         public Vector3 Position;
         public string Name;
         public string Type;
-        public bool isLive {  get; set; }
+        public bool isLive {get; set;}
         public Planet(Vector3 position, string name, string type, bool isLive)
         {
             Position = position;

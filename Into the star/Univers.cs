@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
+using System.Security.AccessControl;
 
 namespace Into_the_star
 {
@@ -27,10 +28,19 @@ namespace Into_the_star
         public void Generate(int size)
         {
             Random random = new Random();
-            string tkt;
+            bool tkt;
             for (int i = 0; i < size; i++)
             {
-                Planet planet = new Planet(new Vector3(random.Next(size * 10), random.Next(size * 10), random.Next(size * 10)), random.Next(9999999).ToString(), Types[random.Next(Types.Count)], true);
+                int jsp = random.Next(0,1);
+                if (jsp == 1)
+                {
+                    tkt = true;
+                }
+                else
+                {
+                    tkt = false;
+                }
+                Planet planet = new Planet(new Vector3(random.Next(size * 10), random.Next(size * 10), random.Next(size * 10)), random.Next(9999999).ToString(), Types[random.Next(Types.Count)], tkt);
                 Planets.Add(planet);
             }
         }
