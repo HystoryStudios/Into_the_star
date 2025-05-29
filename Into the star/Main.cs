@@ -29,7 +29,8 @@ Univers univers = new Univers();
 SpaceShip spaceShip = new SpaceShip("test", 0, new Vector3(rd.Next(planetnb *10), rd.Next(planetnb * 10), rd.Next(planetnb * 10)), planetnb / 2);
 
 int day = 0;
-univers.Generate(planetnb);
+univers.GeneratePlanet(planetnb);
+univers.GenerateAsteroid(planetnb);
 
 bool adminmode = false;
 
@@ -94,7 +95,10 @@ while (true)
     {
         Commands.Scan(univers, spaceShip);
     }
-
+    else if (input == "info spaceship")
+    {
+        Commands.SpaceShipinfo(spaceShip);
+    }
     else if (input == "Admin Mode")
     {
         adminmode = true;
@@ -107,7 +111,11 @@ while (true)
             Console.WriteLine(planet.Position.ToString());
         }
     }
-    journal.Whrite(input);
+    else
+    {
+        Tools.Whrite.Color_Write(ConsoleColor.Red, "[Nova] This command doesn't exist! Use help\n");
+    }
+    journal.Write(input);
     nova.Update(journal);
-    nova.Event();
+    nova.Event(spaceShip);
 }

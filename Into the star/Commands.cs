@@ -19,6 +19,13 @@ namespace Into_the_star
                     planet.Info();
                 }
             }
+            foreach (var a in univers.Asteroids)
+            {
+                if (a.Position == position)
+                {
+                    a.Info();
+                }
+            }
         }
         
         public static void Scan(Univers univers, SpaceShip spaceShip)
@@ -40,8 +47,14 @@ namespace Into_the_star
                                 list.Add(p.Position);
                             }
                         }
+                        foreach (var a in univers.Asteroids)
+                        {
+                            if (pos == a.Position)
+                            {
+                                list.Add(a.Position);
+                            }
+                        }
 
-                        
                     }
                 }
             }
@@ -65,11 +78,24 @@ namespace Into_the_star
         public static void Goto(SpaceShip spaceShip, string gtpos)
         {
             spaceShip.Move(gtpos);
-            Tools.Whrite.Color_Write(ConsoleColor.Green, $"[SpaceShip] Your new position is : {spaceShip.Position}\n");
+            
         }
         public static void Help()
         {
-
+            Console.WriteLine("| go to : For go to a 3D position write 'gp to x y z'");
+            Console.WriteLine("| Nova : For talk to Nova");
+            Console.WriteLine("| position : For get your actual position");
+            Console.WriteLine("| scan : For scan the space");
+            Console.WriteLine("| info : For get information of your actual position");
+            Console.WriteLine("| info spaceship : For get all the information of your spaceship");
+        }
+        public static void SpaceShipinfo(SpaceShip spaceShip)
+        {
+            Console.WriteLine($"|ID : {spaceShip.ID}");
+            Console.WriteLine($"|Name : {spaceShip.Name}");
+            Console.WriteLine($"|Scan Size : {spaceShip.ScanSize}");
+            Console.WriteLine($"|Carburant : {spaceShip.Carburant}");
+            Console.WriteLine($"|Position : {spaceShip.Position}");
         }
     }
 }

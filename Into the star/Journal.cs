@@ -16,10 +16,9 @@ namespace Into_the_star
             Journaldic = new Dictionary<int, string>();
         }
 
-        public void Whrite(string input)
+        public void Write(string input)
         {
-
+            
         }
-
     }
 }

@@ -45,12 +45,24 @@ namespace Into_the_star
                     Tools.Whrite.WriteMachine("[Nova] Sorry for the last time. . . j'était énèrver d'ettre au fin fond de l'espace seule . . . \n", 100);
                     break;
 
+                case 3:
+
+                    break;
+
             }
         }
 
-        public void Event()
+        public void Event(SpaceShip spaceShip)
         {
+            if (spaceShip.Carburant <= 1)
+            {
+                Tools.Whrite.WriteMachine($"\n\n\n[Nova] Hey are you here ?\n", 200);
+                Tools.Whrite.WriteMachine($"[Nova] You are in the void of the space, ", 50);
+                Tools.Whrite.WriteMachine($"Into the star.\n", 200);
+                Tools.Whrite.WriteMachine($"[Nova] No carburant, no planet, no asteroid... Nothing\n", 150);
+                Tools.Whrite.WriteMachine($"[Nova] Juste toi et moi, dans le vide intercideral de l'espace...\n", 150);
 
+            }
         }
     }
 }
