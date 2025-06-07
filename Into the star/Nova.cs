@@ -11,6 +11,7 @@ namespace Into_the_star
     {
         private Journal Journal {  get; set; }
         private int nboftalk = 0;
+        private bool isnocarburant = false;
         public Nova(Journal journal) 
         {
             Journal = journal;
@@ -52,16 +53,24 @@ namespace Into_the_star
             }
         }
 
-        public void Event(SpaceShip spaceShip)
+        public void Event(SpaceShip spaceShip, Univers univers)
         {
-            if (spaceShip.Carburant <= 1)
+            
+            if (spaceShip.Carburant <= 1 && isnocarburant == false)
             {
                 Tools.Whrite.WriteMachine($"\n\n\n[Nova] Hey are you here ?\n", 200);
                 Tools.Whrite.WriteMachine($"[Nova] You are in the void of the space, ", 50);
                 Tools.Whrite.WriteMachine($"Into the star.\n", 200);
                 Tools.Whrite.WriteMachine($"[Nova] No carburant, no planet, no asteroid... Nothing\n", 150);
                 Tools.Whrite.WriteMachine($"[Nova] Juste toi et moi, dans le vide intercideral de l'espace...\n", 150);
+                Random random = new Random();
 
+                spaceShip.Position = univers.Planets[random.Next(univers.Planets.Count)].Position;
+
+                Tools.Whrite.WriteMachine($"\n\n[StoryTeller] Aprés {random.Next(100000)} jours a dérivé dans le vide de l'espace vous tombez finalement sur une planette !\n", 200);
+                Tools.Whrite.WriteMachine($"[Nova] Your new position is  {spaceShip.Position}\n", 200);
+
+                isnocarburant = true;
             }
         }
     }

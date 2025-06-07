@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace Into_the_star
 {
@@ -75,10 +76,41 @@ namespace Into_the_star
             }
             
         }
+        public static void Mine(Univers univers, SpaceShip spaceShip)
+        {
+            foreach (var a in univers.Asteroids)
+            {
+                if (a.Position == spaceShip.Position)
+                {
+                    if (spaceShip.Inventory.ContainsKey(a.Ore.Name))
+                    {
+                        spaceShip.Inventory.TryGetValue(a.Ore.Name, out var item);
+                        spaceShip.Inventory.Remove(a.Ore.Name);
+                        spaceShip.Inventory.Add(a.Ore.Name, item+ a.OreNumber);
+                        Tools.Whrite.Color_Write(ConsoleColor.Green, $"You have received {a.OreNumber} {a.Ore.Name} !\n");
+                    }
+                    else
+                    {
+                        spaceShip.Inventory.Add(a.Ore.Name, a.OreNumber);
+                        Tools.Whrite.Color_Write(ConsoleColor.Green, $"You have received {a.OreNumber} {a.Ore.Name} !\n");
+                    }
+                }
+            }
+        }
+        public static void Inventory(SpaceShip spaceShip)
+        {
+            if (spaceShip.Inventory.Count == 0)
+            {
+                Tools.Whrite.Color_Write(ConsoleColor.Red, "[SpaceShip] Your Inventory is empty!\n");
+            }
+            foreach (var item in spaceShip.Inventory)
+            {
+                Console.WriteLine($"{item.Key} : {item.Value}");
+            }
+        }
         public static void Goto(SpaceShip spaceShip, string gtpos)
         {
             spaceShip.Move(gtpos);
-            
         }
         public static void Help()
         {
@@ -88,6 +120,8 @@ namespace Into_the_star
             Console.WriteLine("| scan : For scan the space");
             Console.WriteLine("| info : For get information of your actual position");
             Console.WriteLine("| info spaceship : For get all the information of your spaceship");
+            Console.WriteLine("| mine : for mine asteroid");
+            Console.WriteLine("| inventory : open your inventory");
         }
         public static void SpaceShipinfo(SpaceShip spaceShip)
         {

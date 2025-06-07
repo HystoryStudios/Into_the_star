@@ -5,7 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Net;
 namespace Into_the_star
 {
     public class SpaceShip
@@ -15,6 +15,7 @@ namespace Into_the_star
         public Vector3 Position { get; set; }
         public int ScanSize { get; set; }
         public float Carburant { get; set; }
+        public Dictionary<string, int> Inventory { get; set; }
         public SpaceShip(string name, int iD, Vector3 position, int scansize)
         {
             Name = name;
@@ -22,6 +23,7 @@ namespace Into_the_star
             Position = position;
             ScanSize = scansize;
             Carburant = 100;
+            Inventory = new Dictionary<string, int>();
         }
 
         public void Move(string input) 
@@ -45,6 +47,14 @@ namespace Into_the_star
                 Carburant = before;
             }
 
+        }
+
+        public void Charge(int size)
+        {
+            Inventory.TryGetValue("Uranium", out int value);
+            Inventory.Remove("Uranium");
+            Inventory.Add("Uranium", value - size);
+            Carburant = size * 10;
         }
     }
 }

@@ -14,17 +14,20 @@ namespace Into_the_star
         public string Name { get; set; }
         public Vector3 Position { get; set; }
         public Ore Ore {  get; set; }
+        public int OreNumber { get; set; }
         public Asteroid(string name, Vector3 position,Ore ore)
         {
+            Random random = new Random();
             Ore = ore;
             Name = name;
             Position = position;
+            OreNumber = random.Next(1, 5);
         }
 
         public void Info()
         {
             Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Name : {Name}\n");
-            Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Ore : {Ore}\n");
+            Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Ore : {Ore.Name}\n");
         }
     }
 }
