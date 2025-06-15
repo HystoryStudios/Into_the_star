@@ -131,5 +131,16 @@ namespace Into_the_star
             Console.WriteLine($"|Carburant : {spaceShip.Carburant}");
             Console.WriteLine($"|Position : {spaceShip.Position}");
         }
+        public static void GoIn(SpaceShip spaceShip, Univers univers, Player player)
+        {
+            foreach (var p in univers.Planets)
+            {
+                if (p.Position == spaceShip.Position)
+                {
+                    Console.Clear();
+                    player.Draw(ConsoleColor.Blue);
+                }
+            }
+        }
     }
 }

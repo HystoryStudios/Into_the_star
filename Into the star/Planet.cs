@@ -13,6 +13,8 @@ namespace Into_the_star
         public Vector3 Position;
         public string Name;
         public string Type;
+        public int[,] Chunk;
+        List<int[,]> Contenue;
         public bool isLive {get; set;}
         public Planet(Vector3 position, string name, string type, bool isLive)
         {
@@ -20,12 +22,17 @@ namespace Into_the_star
             Name = name;
             Type = type;
             this.isLive = isLive;
+            Contenue = new List<int[,]>();
         }
         public void Info()
         {
             Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Name : {Name}\n");
             Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Type : {Type}\n");
             Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Life : {isLive.ToString()}\n");
+        }
+        public void Generate()
+        {
+
         }
     }
 }

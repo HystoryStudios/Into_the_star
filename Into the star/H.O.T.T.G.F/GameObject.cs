@@ -15,12 +15,6 @@ namespace HOTTGF
         public char Texture {  get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public GameObject(char texture, Vector2 position)
-        {
-            Texture = texture;
-            X = (int) position.X;
-            Y = (int) position.Y;
-        }
 
         public void Draw(ConsoleColor color)
         {
