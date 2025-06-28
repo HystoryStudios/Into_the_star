@@ -32,9 +32,11 @@ univers.GeneratePlanet(planetnb);
 univers.GenerateAsteroid(planetnb);
 
 bool adminmode = false;
-
+Player player = new Player('i', new Vector2(1, 1));
 
 // Pre-Lunch
+Console.ResetColor();
+Console.Clear();
 Tools.Whrite.WriteMachine("Welcome to Into the Star !\n", 100);
 
 Tools.Whrite.WriteMachine("Warning : This game is in french and english\n", 100);
@@ -78,8 +80,9 @@ while (true)
     else if (input =="help") { Commands.Help(); }
     else if (input == "Nova") { nova.Talk(); }
     else if (input == "position") { Console.Write($"Your position is :"); Tools.Whrite.WriteMachine(spaceShip.Position.ToString(), 100); Console.WriteLine(""); }
-    else if (input.StartsWith("go to")) 
-    { 
+    else if (input == "goin") { Commands.GoIn(spaceShip, univers, player); }
+    else if (input.StartsWith("go to"))
+    {
         string[] test = input.Split(' ');
         if (test.Length == 5)
         {

@@ -138,9 +138,17 @@ namespace Into_the_star
                 if (p.Position == spaceShip.Position)
                 {
                     Console.Clear();
-                    player.Draw(ConsoleColor.Blue);
+                    while (true)
+                    {
+                        player.Move();
+                        player.Draw(ConsoleColor.Blue);
+                    }
                 }
             }
+        }
+        public static void Charge(SpaceShip spaceShip)
+        {
+            
         }
     }
 }
