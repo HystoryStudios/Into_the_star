@@ -14,35 +14,36 @@ namespace Into_the_star
         public Vector3 Position;
         public string Name;
         public string Type;
-        public int[,] Chunk;
-        public Dictionary<int, TileMap> Content;
+        public int Size;
+        public Dictionary<Vector2, float> Chunk {  get; set; }
+
         public bool isLive {get; set;}
-        public Planet(Vector3 position, string name, string type, bool isLive)
+        public Planet(Vector3 position, string name, string type,int size, bool isLive)
         {
             Position = position;
             Name = name;
             Type = type;
+            Size = size;
             this.isLive = isLive;
-            Content = new Dictionary<int,TileMap>();
+            Chunk = new();
         }
         public void Info()
         {
             Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Name : {Name}\n");
             Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Type : {Type}\n");
             Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Life : {isLive.ToString()}\n");
+            Tools.Whrite.Color_Write(ConsoleColor.Yellow, $"Size : {Size.ToString()}\n");
         }
-        private char[,] Generate(Vector2 ScreenSize)
+        public void Generate()
         {
-            char[,] content = null;
-
-            for (int y = 0; y > ScreenSize.Y; y++)
+            Random rd = new Random();
+            for (int i = 0; i < Size; i++)
             {
-                for (int x = 0; x > ScreenSize.X; x++)
+                for (int j = 0; j < Size; j++)
                 {
-                    content[x, y] = '.';
+                    Chunk.Add(new Vector2(i, j), rd.Next(1, 4));
                 }
             }
-            return content;
         }
     }
 }

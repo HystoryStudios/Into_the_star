@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
@@ -131,24 +132,55 @@ namespace Into_the_star
             Console.WriteLine($"|Carburant : {spaceShip.Carburant}");
             Console.WriteLine($"|Position : {spaceShip.Position}");
         }
-        public static void GoIn(SpaceShip spaceShip, Univers univers, Player player)
-        {
+        public static void GoIn(SpaceShip spaceShip, Univers univers)
+        {   
             foreach (var p in univers.Planets)
             {
                 if (p.Position == spaceShip.Position)
                 {
-                    Console.Clear();
+                    p.Generate();
+
+                    Tools.Whrite.WriteMachine($"[Nova] Welcome on {p.Name}\n", 100);
+
                     while (true)
                     {
-                        player.Move();
-                        player.Draw(ConsoleColor.Blue);
+                        Tools.Whrite.Color_Write(ConsoleColor.Green, ">>");
+                        string input = Console.ReadLine();
+
+
+                        if (input == "go out")
+                        {
+                            Tools.Whrite.WriteMachine("[Nova] GO BACK IN THE SPACE !\n", 100);
+                            Tools.Whrite.WriteMachine($"[Nova] See You again {p.Name} !\n", 100);
+                            break;
+                        }
+                        else
+                        {
+                            Tools.Whrite.Color_Write(ConsoleColor.Red, "[Nova] Is it... a command ?");
+                        }
                     }
                 }
             }
         }
-        public static void Charge(SpaceShip spaceShip)
+        public static void Charge(SpaceShip spaceShip, int nb)
         {
-            
+            spaceShip.Inventory.TryGetValue("Uranium", out int save);
+            for (int i = 0; i < nb; i++)
+            {
+                if (spaceShip.Inventory.ContainsKey("Uranium"))
+                {
+                    spaceShip.Inventory.TryGetValue("Uranium", out var item);
+                    spaceShip.Inventory.Remove("Uranium");
+                    spaceShip.Inventory.Add("Uranium", item - 1);
+                }
+                else
+                {
+                    spaceShip.Inventory.Remove("Uranium");
+                    spaceShip.Inventory.Add("Uranium", save);
+                    Tools.Whrite.Color_Write(ConsoleColor.Red, "[SpaceShip] You don't have any Uranium !!!");
+                    break;
+                }
+            }
         }
     }
 }

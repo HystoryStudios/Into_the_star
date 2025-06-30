@@ -32,7 +32,6 @@ univers.GeneratePlanet(planetnb);
 univers.GenerateAsteroid(planetnb);
 
 bool adminmode = false;
-Player player = new Player('i', new Vector2(1, 1));
 
 // Pre-Lunch
 Console.ResetColor();
@@ -80,7 +79,7 @@ while (true)
     else if (input =="help") { Commands.Help(); }
     else if (input == "Nova") { nova.Talk(); }
     else if (input == "position") { Console.Write($"Your position is :"); Tools.Whrite.WriteMachine(spaceShip.Position.ToString(), 100); Console.WriteLine(""); }
-    else if (input == "goin") { Commands.GoIn(spaceShip, univers, player); }
+    else if (input == "goin") { Commands.GoIn(spaceShip, univers); }
     else if (input.StartsWith("go to"))
     {
         string[] test = input.Split(' ');
@@ -109,6 +108,18 @@ while (true)
     else if (input == "mine")
     {
         Commands.Mine(univers, spaceShip);
+    }
+    else if (input.StartsWith("charge"))
+    {
+        string[] jsp = input.Split(" ");
+        if (jsp.Length == 2)
+        {
+            int tkt = int.Parse(jsp[1]);
+            Commands.Charge(spaceShip, tkt);
+        } else
+        {
+            Tools.Whrite.Color_Write(ConsoleColor.Red, "[Nova] Not the good argument !\n");
+        }
     }
     else if (input == "Admin Mode")
     {

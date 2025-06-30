@@ -50,7 +50,7 @@ namespace Into_the_star
                 {
                     tkt = false;
                 }
-                Planet planet = new Planet(new Vector3(random.Next(size * 10), random.Next(size * 10), random.Next(size * 10)), nm, Types[random.Next(Types.Count)], tkt);
+                Planet planet = new Planet(new Vector3(random.Next(size * 10), random.Next(size * 10), random.Next(size * 10)), nm, Types[random.Next(Types.Count)], random.Next(10, 1000), tkt);
                 Planets.Add(planet);
             }
         }
